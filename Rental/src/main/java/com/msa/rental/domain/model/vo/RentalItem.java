@@ -1,17 +1,19 @@
 package com.msa.rental.domain.model.vo;
 
 import java.time.LocalDate;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+@Embeddable
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RentalItem {
 
+    @Embedded
     private Item item;
     private LocalDate rentDate;
     private boolean overdued;

@@ -3,10 +3,12 @@ package com.msa.rental.domain.model.vo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
+import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
