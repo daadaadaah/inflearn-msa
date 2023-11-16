@@ -3,13 +3,18 @@ package com.msa.bestbook.domain.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nonapi.io.github.classgraph.json.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
+@Document
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class BestBook {
+
+    @Id
     private String id;
     private Item item;
     private long rentCount;
