@@ -1,10 +1,12 @@
 package com.msa.book.domain.model.vo;
 
 import java.time.LocalDate;
+import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Embeddable
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

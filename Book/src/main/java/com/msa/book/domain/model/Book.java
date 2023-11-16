@@ -6,16 +6,26 @@ import com.msa.book.domain.model.vo.Classfication;
 import com.msa.book.domain.model.vo.Location;
 import com.msa.book.domain.model.vo.Source;
 import java.time.LocalDate;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private long no;
     private String title;
+
+    @Embedded
     private BookDesc desc;
     private Classfication classfication;
     private BookStatus bookStatus;
