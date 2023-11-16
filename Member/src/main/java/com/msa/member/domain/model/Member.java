@@ -12,15 +12,31 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long MemberNo;
+
+    @Embedded
     private IDName idName;
+
+    @Embedded
     private PassWord password;
+
+    @Embedded
     private Email email;
+
+    @ElementCollection
     private List<Authority> authorities = new ArrayList<>();
+
+    @Embedded
     private Point point;
 
     public static Member registerMember(IDName idName,PassWord pwd,Email email) {
