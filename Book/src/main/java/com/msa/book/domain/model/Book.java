@@ -56,7 +56,7 @@ public class Book {
     }
 
     public Book makeUnavailable() {
-        this.setBookStatus(BookStatus.AVAILABLE);
+        this.setBookStatus(BookStatus.UNAVAILABLE);
         return this;
     }
 }

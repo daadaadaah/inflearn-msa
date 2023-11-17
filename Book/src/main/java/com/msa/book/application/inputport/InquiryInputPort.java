@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class InquiryInputPort implements InquiryUsecase {
-    private final BookOutPutPort bookOutPort;
+    private final BookOutPutPort bookOutPutPort;
 
     @Override
     public BookOutPutDTO getBookInfo(long bookNo) {
-        Book loadBook = bookOutPort.loadBook(bookNo);
+        Book loadBook = bookOutPutPort.loadBook(bookNo);
         return BookOutPutDTO.mapToDTO(loadBook);
     }
 }

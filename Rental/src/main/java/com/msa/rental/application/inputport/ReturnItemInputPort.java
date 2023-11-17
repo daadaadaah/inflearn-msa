@@ -1,8 +1,10 @@
 package com.msa.rental.application.inputport;
 
+import com.msa.rental.application.outputport.EventOutputPort;
 import com.msa.rental.application.outputport.RentalCardOutputPort;
 import com.msa.rental.application.usecase.ReturnItemUsercase;
 import com.msa.rental.domain.model.RentalCard;
+import com.msa.rental.domain.model.event.ItemReturned;
 import com.msa.rental.domain.model.vo.Item;
 import com.msa.rental.framework.web.dto.RentalCardOutputDTO;
 import com.msa.rental.framework.web.dto.UserItemInputDTO;
@@ -18,6 +20,8 @@ public class ReturnItemInputPort implements ReturnItemUsercase {
 
     private final RentalCardOutputPort rentalCardOutputPort;
 
+    private final EventOutputPort eventOutputPort;
+
     @Override
     public RentalCardOutputDTO returnItem(UserItemInputDTO returnDto) throws Exception {
         // OutputPort를 사용해서 rental를 검색한 후
@@ -28,6 +32,12 @@ public class ReturnItemInputPort implements ReturnItemUsercase {
         Item returnItem = new Item(returnDto.getItemId(), returnDto.getItemTitle());
 
         rental = rental.returnItem(returnItem, LocalDate.now());
+
+        // 대여 이벤트 생성
+        ItemReturned itemReturnEvent = RentalCard.createItemReturnEvent(rental.getMember(),returnItem,10L);
+
+        // 대여 이벤트 발행
+        eventOutputPort.occurReturnEvent(itemReturnEvent);
 
         return RentalCardOutputDTO.mapToDTO(rental);
     }

@@ -33,8 +33,16 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 server:
-  port: 8080
+  port: 8081
 
 logging:
   level:
     org.hibernate.SQL: debug
+producers:
+  bootstrap-servers: localhost:9092
+  topic1:
+    name: rental_rent
+  topic2:
+    name: rental_return
+  topic3:
+    name: overdue_clear
