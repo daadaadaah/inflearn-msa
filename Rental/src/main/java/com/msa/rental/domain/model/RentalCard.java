@@ -82,6 +82,8 @@ public class RentalCard {
         RentalCard rentalCard = new RentalCard();
         rentalCard.setRentalCardNo(RentalCardNo.createRentalCardNo());
         rentalCard.setMember(creator);
+        rentalCard.setRentStatus(RentStatus.RENT_AVAILABLE);
+        rentalCard.setLateFee(LateFee.createLateFee());
         return rentalCard;
     }
 

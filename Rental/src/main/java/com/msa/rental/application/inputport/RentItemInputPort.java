@@ -28,6 +28,10 @@ public class RentItemInputPort implements RentItemUsecase {
         RentalCard rentalCard = rentalCardOutputPort.loadRentalCard(rental.getUserId())
                 .orElseGet(() -> RentalCard.createRentalCard(new IDName(rental.getUserId(), rental.getUserNm())));
 
+        System.out.println("rentalCard : "+rentalCard.getRentalCardNo());
+
+        RentalCard save = rentalCardOutputPort.save(rentalCard);
+
         // 대여할 아이템 생성 및 대여 처리
         Item newItem = new Item(rental.getItemId(), rental.getItemTitle());
 
@@ -40,9 +44,9 @@ public class RentItemInputPort implements RentItemUsecase {
         // 대여 이벤트 발행
         eventOutputPort.occurRentalEvent(itemRentedEvent);
 
-        return RentalCardOutputDTO.mapToDTO(rentalCard);
+        return RentalCardOutputDTO.mapToDTO(save);
 
-//        RentalCard save = rentalCardOutputPort.save(rentalCard);
+//
 //        return RentalCardOutputDTO.mapToDTO(save);
     }
 }

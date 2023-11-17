@@ -68,13 +68,15 @@ public class RentalController {
         return ResponseEntity.ok(allReturnItem.get());
     }
 
-    @ApiOperation(value = "대여기능",notes = "사용자정보,아이템정보1 -> 도서카드정보 ") @PostMapping("/RentalCard/rent")
+    @ApiOperation(value = "대여기능",notes = "사용자정보,아이템정보1 -> 도서카드정보 ")
+    @PostMapping("/RentalCard/rent")
     public ResponseEntity<RentalCardOutputDTO> rentItem(@RequestBody UserItemInputDTO userItemInputDTO) throws Exception {
         RentalCardOutputDTO resultDTO = rentItemUsecase.rentItem(userItemInputDTO);
         return ResponseEntity.ok(resultDTO);
     }
 
-    @ApiOperation(value = "반납기능",notes = "사용자정보,아이템정보1 -> 도서카드정보 ") @PostMapping("/RentalCard/return")
+    @ApiOperation(value = "반납기능",notes = "사용자정보,아이템정보1 -> 도서카드정보 ")
+    @PostMapping("/RentalCard/return")
     public ResponseEntity<RentalCardOutputDTO> returnItem(@RequestBody UserItemInputDTO userItemInputDTO) throws Exception {
         RentalCardOutputDTO rentalCardOutputDTO =
             returnItemUsercase.returnItem(userItemInputDTO);
@@ -88,7 +90,8 @@ public class RentalController {
         return ResponseEntity.ok(rentalCardOutputDTO);
     }
 
-    @ApiOperation(value = "연체해제기능",notes = "사용자정보,포인트 -> 도서카드정보 ") @PostMapping("/RentalCard/clearoverdue")
+    @ApiOperation(value = "연체해제기능",notes = "사용자정보,포인트 -> 도서카드정보 ")
+    @PostMapping("/RentalCard/clearoverdue")
     public ResponseEntity<RentalResultOutputDTO> clearOverdueItem(@RequestBody ClearOverdueInfoDTO clearOverdueInfoDTO) throws Exception {
         RentalResultOutputDTO rentalResultOuputDTO = clearOverdueItemUsecase.clearOverdue(clearOverdueInfoDTO);
         return ResponseEntity.ok(rentalResultOuputDTO);

@@ -23,12 +23,13 @@ public class ClearOverdueItemInputPort implements ClearOverdueItemUsecase {
     public RentalResultOutputDTO clearOverdue(ClearOverdueInfoDTO clearOverdueInfoDTO) throws Exception {
         RentalCard loadRentalCard = rentalCardOutputPort.loadRentalCard(clearOverdueInfoDTO.UserId)
                                         .orElseThrow(() -> new IllegalArgumentException("해당 카드가 존재하지 않습니다."));
+
         // 정지해제됨 이벤트 생성
         OverdueCleared overdueClearEvent = RentalCard.createOverdueClearedEvent(loadRentalCard.getMember(),clearOverdueInfoDTO.getPoint());
 
         // 정지해제됨 이벤트 발행
         eventOutputPort.occurOverdueClearedEvent(overdueClearEvent);
 
-        return RentalResultOutputDTO .mapToDTO(loadRentalCard);
+        return RentalResultOutputDTO.mapToDTO(loadRentalCard);
     }
 }
