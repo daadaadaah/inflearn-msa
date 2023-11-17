@@ -16,7 +16,7 @@ public class MakeUnAvailableInputPort implements MakeUnAvailableUsecase {
     private final BookOutPutPort bookOutPutPort;
 
     @Override
-    public BookOutPutDTO unavailable(long bookNo) {
+    public BookOutPutDTO unavailable(Long bookNo) {
         Book loadBook = bookOutPutPort.loadBook(bookNo);
         loadBook.makeUnavailable();
         return BookOutPutDTO.mapToDTO(loadBook);
